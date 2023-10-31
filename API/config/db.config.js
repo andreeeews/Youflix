@@ -10,7 +10,7 @@ mongoose
     )
     .catch((error) => 
         console.error(
-            'An error ocurred trying to connect to the database 🔴',
+            'An error ocurred trying to connect to the database',
             error
         )
     );
