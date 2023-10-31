@@ -30,7 +30,7 @@ const userSchema = new Schema({
     trim: true,
   },
   avatar: {
-    type: Image,
+    type: String,
   },
 });
 

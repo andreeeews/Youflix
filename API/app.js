@@ -10,6 +10,9 @@ app.use(express.json());
 app.use(logger('dev'));
 
 //TODO SESSION CONFIG
+const sessionConfig = require("./config/session.config");
+app.use(sessionConfig.session);
+app.use(sessionConfig.loadSessionUser);
 
 const routes = require('./config/routes.config');
 app.use('/v1', routes);
