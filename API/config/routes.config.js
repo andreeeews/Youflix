@@ -10,6 +10,7 @@ router.get('/home', function(req, res, next) {
 // User section
 //router.get()
 router.post('/register', user.register);
+router.post('/login', user.login)
 
 
 module.exports = router;
