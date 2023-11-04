@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const playlist = new Schema({
-  id: String,
+  youtubeId: String,
   snippet: {
     publishedAt: Date,
     channelId: String,

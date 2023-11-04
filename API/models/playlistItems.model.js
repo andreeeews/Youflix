@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const playlistItems = new Schema(
   {
-  id: String,
+  youtubeId: String,
   snippet: {
     publishedAt: Date,
     channelId: String,
