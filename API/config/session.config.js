@@ -23,7 +23,7 @@ module.exports.loadSessionUser = (req, res, next) => {
   const userId = req.session.userId;
   if(userId) {
     User.findById(userId)
-    then((user) => {
+    .then((user) => {
       req.user = user;
       res.locals.currentUser = user;
       next();

@@ -31,4 +31,31 @@ module.exports.login = (req, res, next) => {
         res.status(401).json({ message: "Wrong user or password"})
       }
     })
+};
+
+module.exports.profile = (req, res, next) => {
+  User.find(res.locals.currentUser)
+    .then((user) => {
+      if(user) {
+        res.status(200).json({ user })
+      } else {
+        next(createError(404, 'User not found'))
+      }
+    })
+    .catch((error) => next(error))
+};
+
+module.exports.update = (req, res, next) => {
+  User.findOneAndUpdate(res.locals.currentUser, req.body, {
+    runValidators: true,
+    new: true
+  })
+    .then((user) => {
+      if(user) {
+        res.json(user);
+      } else {
+        next(createError(404, 'User not found'))
+      }
+    })
+    .catch((error) => next(error))
 }
