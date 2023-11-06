@@ -3,7 +3,7 @@ const Playlist = require("../models/playlist.model");
 
 module.exports.list = (req, res, next) => {
   Playlist.find()
-    .then((series) => { res.status(200). res.json(series)})
+    .then((series) => { res.status(200).json({ series })})
     .catch((error) => {
       console.error("Error getting series list");
       next(error);
