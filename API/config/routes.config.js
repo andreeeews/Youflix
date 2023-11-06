@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const user = require("../controller/user.controller")
+const home = require("../controller/home.controller")
 
 // Home section
-router.get('/home', function(req, res, next) {
-    res.json({ 'test': 'completed' })
-})
+router.get('/home', home.list);
 
 // User section
 //router.get()
