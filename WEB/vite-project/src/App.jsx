@@ -1,3 +1,4 @@
+import Card from "./components/body-card/Card"
 import Header from "./components/header/Header"
 
 
@@ -9,9 +10,7 @@ function App() {
         <Header/>
       </div>
       <div>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
+        <Card/>
       </div>
     </>
   )
