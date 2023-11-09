@@ -18,27 +18,35 @@ function Header() {
             ¿Quieres ver algo ya? Escribe tu dirección de correo para crear una
             cuenta.
           </p>
-          <a
-            href="#"
-            className="custom-background-button inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline"
+          <button
+            type="button"
+            className="text-xl  text-white bg-red-700 hover:animate-pulse focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-12 py-4 mt-6 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Read more
+            Empezar
+          </button>
+          <button
+            data-collapse-toggle="navbar-sticky"
+            type="button"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-sticky"
+            aria-expanded="false"
+          >
             <svg
-              className="w-3.5 h-3.5 ml-2"
+              className="w-5 h-5"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
-              viewBox="0 0 14 10"
+              viewBox="0 0 17 14"
             >
               <path
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
+                d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </div>

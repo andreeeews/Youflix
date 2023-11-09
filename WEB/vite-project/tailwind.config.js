@@ -7,6 +7,9 @@ export default {
   theme: {
     extend: {},
   },
+  corePlugins: {
+    animation: true,
+  },
   plugins: [],
-}
+};
 

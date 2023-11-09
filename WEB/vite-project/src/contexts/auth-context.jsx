@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
   const value = {
     user,
     onLogin,
-    onLogut,
+    onLogout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
