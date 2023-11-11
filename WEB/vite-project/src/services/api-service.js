@@ -25,3 +25,9 @@ service.interceptors.response.use(
 export function login(data) {
   return service.post("/login", data);
 }
+
+export function createUser(body) {
+  return service.post("/register", body);
+}
+
+export function getSeries
