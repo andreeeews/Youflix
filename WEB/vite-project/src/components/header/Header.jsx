@@ -1,5 +1,6 @@
 import Navbar from "../navbar/Navbar";
 import "../header/header.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -18,12 +19,12 @@ function Header() {
             ¿Quieres ver algo ya? Escribe tu dirección de correo para crear una
             cuenta.
           </p>
-          <button
+          <Link to="/login"
             type="button"
             className="text-xl  text-white bg-red-700 hover:animate-pulse focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-12 py-4 mt-6 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Empezar
-          </button>
+          </Link>
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
