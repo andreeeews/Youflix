@@ -2,11 +2,15 @@ import { useForm } from "react-hook-form";
 import { login } from "../../services/api-service";
 import { useAuthContext } from "../../contexts/auth-context";
 import { Link } from "react-router-dom";
-import "../../components/header/header.css"
-import "../login/login.css"
+import "../../components/header/header.css";
+import "../login/login.css";
 
 function LoginPage() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const { onLogin } = useAuthContext();
 
@@ -23,7 +27,10 @@ function LoginPage() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl dark:text-white">
               Iniciar sesión
             </h1>
-            <form onSubmit={handleSubmit(handleLogin)} className="space-y-4 md:space-y-6">
+            <form
+              onSubmit={handleSubmit(handleLogin)}
+              className="space-y-4 md:space-y-6"
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -32,7 +39,8 @@ function LoginPage() {
                   Tu email
                 </label>
                 <input
-                  {...register("email")}
+                  aria-invalid={errors.email ? "true" : "false"}
+                  {...register("email", { required: true, maxLength: 30 })}
                   type="email"
                   name="email"
                   id="email"
@@ -40,7 +48,16 @@ function LoginPage() {
                   placeholder="name@company.com"
                   required=""
                 />
+                {errors.email && errors.email.type === "required" && (
+                  <span role="alert" className="text-red-600">
+                    This is required
+                  </span>
+                )}
+                {errors.email && errors.email.type === "maxLength" && (
+                  <span role="alert">Max length exceeded</span>
+                )}
               </div>
+
               <div>
                 <label
                   htmlFor="password"
@@ -59,29 +76,27 @@ function LoginPage() {
                 />
               </div>
               <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                </div>
+                <div className="flex items-start"></div>
                 <a
                   href="#"
                   className="text-white text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Forgot password?
+                  ¿Has olvidado la contraseña?
                 </a>
               </div>
               <button
                 type="submit"
                 className="w-full text-white bg-red-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
-                Sign in
+                Inicia sesión
               </button>
               <p className="text-sm font-light text-white dark:text-gray-400">
-                Don’t have an account yet?{" "}
-                <a
-                  href="#"
+                ¿No tienes cuenta aún?{" "}
+                <Link to="/register"
                   className="text-red-500 font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Sign up
-                </a>
+                  Registrate
+                </Link>
               </p>
             </form>
           </div>

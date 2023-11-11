@@ -3,7 +3,8 @@ const User = require("../models/user.model");
 const mongoose = require("mongoose");
 
 module.exports.register = (req, res, next) => {
-    User.create(req.body)
+  console.error(req.body)  
+  User.create(req.body)
     .then((user) => {
       res.status(201).json(user)
     })

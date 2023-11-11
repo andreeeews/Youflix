@@ -13,5 +13,7 @@ router.post('/login', user.login);
 router.post('/profile', user.profile);
 router.patch('/profile', user.update);
 
+// Series section
+
 
 module.exports = router;
