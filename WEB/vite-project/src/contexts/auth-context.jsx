@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -25,6 +24,7 @@ export function AuthProvider({ children }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuthContext() {
   return useContext(AuthContext);
 }
