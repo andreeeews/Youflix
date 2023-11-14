@@ -5,7 +5,7 @@ import { getPlaylists } from "../../services/api-service";
 
 function List() {
   const [data, setData] = useState([]);
-
+  console.log(data)
   useEffect(() => {
     getPlaylists().then((data) => {
       setData(data);
@@ -17,9 +17,9 @@ function List() {
       <div>
         <Navbar />
       </div>
-      <div className="max-w-sm bg-white borde rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         {data.map((playlist) => (
-          <div key={playlist._id}>
+          <div key={playlist._id} className="playlist-card">
             <a href="#">
               <img
                 className="rounded-t-lg"
@@ -27,6 +27,9 @@ function List() {
                 alt={playlist.snippet.title}
               />
             </a>
+            <div className="playlist-info">
+              <h3>{playlist.snippet.title}</h3>
+            </div>
           </div>
         ))}
       </div>
