@@ -33,3 +33,7 @@ export function createUser(body) {
 export function logoutApi() {
   return service.post("/logout");
 }
+
+export function getPlaylists() {
+  return service.get("/playlists")
+}
