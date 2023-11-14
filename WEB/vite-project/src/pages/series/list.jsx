@@ -9,7 +9,6 @@ function List() {
   useEffect(() => {
     getPlaylists().then((data) => {
       setData(data);
-      console.log(data);
     });
   }, []);
 
