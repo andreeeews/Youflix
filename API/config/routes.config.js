@@ -12,6 +12,7 @@ router.post('/register', user.register);
 router.post('/login', user.login);
 router.post('/profile', user.profile);
 router.patch('/profile', user.update);
+router.post('/logout', user.logout)
 
 // Series section
 

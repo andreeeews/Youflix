@@ -30,3 +30,6 @@ export function createUser(body) {
   return service.post("/register", body);
 }
 
+export function logoutApi() {
+  return service.post("/logout");
+}

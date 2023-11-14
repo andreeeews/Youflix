@@ -22,7 +22,7 @@ module.exports.login = (req, res, next) => {
           .then((match) => {
             if(match) {
               req.session.userId = user.id;
-              res.status(200).json({ message: "Login succesfull"})
+              res.status(200).json(user)
             } else {
               res.status(401).json({ message: "Wrong user or password"})
             }
@@ -59,4 +59,9 @@ module.exports.update = (req, res, next) => {
       }
     })
     .catch((error) => next(error))
-}
+};
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  res.status(204).send();
+};
