@@ -18,13 +18,11 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Estilos para el contenido de texto */
 .custom-background-content {
   position: relative;
   z-index: 1;
 }
 
-/* Estilos para los botones */
 .custom-background-button {
   position: relative;
   z-index: 1;
