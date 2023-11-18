@@ -37,3 +37,8 @@ export function logoutApi() {
 export function getPlaylists() {
   return service.get("/playlists")
 }
+
+export function getPlaylistItems(id) {
+  console.log(id)
+  return service.get(`/playlists/${id}`)
+}
