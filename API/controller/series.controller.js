@@ -12,7 +12,6 @@ module.exports.list = (req, res, next) => {
 module.exports.listItems = (req, res, next) => {
   PlaylistItems.find({ playlistId: req.params.id })
     .then((chapters) => {
-      console.log(chapters)
       res.status(200).json(chapters)
     })
     .catch((error) => next(error))

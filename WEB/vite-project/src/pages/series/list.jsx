@@ -6,8 +6,9 @@ import Popup from "../../components/popup/Popup";
 
 function List() {
   const [data, setData] = useState([]);
-  const [showPopup, setShowPopup] = useState(false)
+  const [showPopup, setShowPopup] = useState(false);
   const [playlistItems, setPlaylistItems] = useState([]);
+  const [selectedPlaylist, setSelectedPlaylist] = useState(null);
 
   useEffect(() => {
     getPlaylists().then((data) => {
@@ -15,18 +16,19 @@ function List() {
     });
   }, []);
 
-  const openPopup = () => {
-    setShowPopup(true)
-    getPlaylistItems(data[0]._id).then((items) => {
+  const openPopup = (playlist) => {
+    setShowPopup(true);
+    setSelectedPlaylist(playlist); // Guarda los datos de la playlist seleccionada
+    getPlaylistItems(playlist._id).then((items) => {
       setPlaylistItems(items);
     });
   };
 
   const closePopup = () => {
-    setShowPopup(false)
-  console.log("Closing Popup");
-  setPlaylistItems([]);
-};
+    setShowPopup(false);
+    setPlaylistItems([]);
+    setSelectedPlaylist(null);
+  };
 
   return (
     <>
@@ -53,7 +55,13 @@ function List() {
           </div>
         ))}
       </div>
-      {showPopup && <Popup closePopup={closePopup} playlistItems={playlistItems} />}
+      {showPopup && (
+        <Popup
+          closePopup={closePopup}
+          playlistItems={playlistItems}
+          selectedPlaylist={selectedPlaylist} // Pasa los datos de la playlist al Popup
+        />
+      )}
     </>
   );
 }

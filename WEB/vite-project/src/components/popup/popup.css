@@ -1,18 +1,66 @@
+.popup-open {
+  overflow: hidden; /* Evita el desplazamiento del cuerpo cuando el popup está abierto */
+}
+
 .popup {
+  /* Estilos adicionales para el fondo opaco */
+  background-color: rgba(0, 0, 0, 0.651); /* Ajusta el valor de alfa según tus preferencias */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1; /* Ajusta el índice z según sea necesario */
 }
 
 .popup-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* Estilos para el contenido del popup */
+
+  padding: 10px;
+  width: 120vh; 
+  margin-bottom: 60px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.video-container {
+  /* Estilos para el contenedor del reproductor de video */
+  margin-top: 20px;
+
+}
+
+.video-player {
+  /* Estilos para el reproductor de video */
+  width: 100%;
+}
+
+.title-item {
+  /* Estilos para los elementos de la lista de títulos */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.title-item:hover {
+  background-color: #ececec; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.close-button {
+  /* Estilos para el botón de cerrar */
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 8px;
+  background-color: #ee0404;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #ececec; /* Puedes cambiar el color según tus preferencias */
+  border-color: #333; /* Puedes cambiar el color del borde según tus preferencias */
 }
