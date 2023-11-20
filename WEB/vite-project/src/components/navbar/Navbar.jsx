@@ -33,7 +33,7 @@ function Navbar() {
           {user ? (
             <div className="flex flex-row items-center relative">
               {user.name && (
-                <span className="text-white mr-2">Hola, {user.name}</span>
+                <span className="text-white mr-2">{user.name}</span>
               )}
               {user.avatar ? (
                 // Mostrar avatar personalizado si está disponible
@@ -71,12 +71,12 @@ function Navbar() {
                   aria-labelledby="avatarButton"
                 >
                   <li>
-                    <a
+                    <Link to="/details"
                       href="#"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                      Dashboard
-                    </a>
+                      Ajustes
+                    </Link>
                   </li>
                   <li>
                     <a
@@ -97,6 +97,7 @@ function Navbar() {
                 </ul>
                 <div className="py-1">
                   <a
+                    href="/"
                     onClick={logout}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >

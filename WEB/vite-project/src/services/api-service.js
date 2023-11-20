@@ -34,6 +34,10 @@ export function logoutApi() {
   return service.post("/logout");
 }
 
+export function editUser(body, id) {
+  return service.patch(`/profile/${id}/update`, body)
+}
+
 export function getPlaylists() {
   return service.get("/playlists");
 }

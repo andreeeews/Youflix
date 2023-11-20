@@ -1,7 +1,6 @@
 const expressSession = require("express-session");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
-const user = require("../models/user.model");
 const User = require("../models/user.model");
 
 module.exports.session = expressSession({
@@ -21,15 +20,16 @@ module.exports.session = expressSession({
 
 module.exports.loadSessionUser = (req, res, next) => {
   const userId = req.session.userId;
-  if(userId) {
+
+  if (userId) {
     User.findById(userId)
-    .then((user) => {
-      req.user = user;
-      res.locals.currentUser = user;
-      next();
-    })
-    .catch((error) => next(error));
+      .then((user) => {
+        req.user = user;
+        res.locals.currentUser = user;
+        next();
+      })
+      .catch((error) => next(error));
   } else {
     next();
   }
-}
+};

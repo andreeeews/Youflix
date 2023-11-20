@@ -11,8 +11,8 @@ router.get('/home', home.list);
 //router.get()
 router.post('/register', user.register);
 router.post('/login', user.login);
-router.post('/profile', user.profile);
-router.patch('/profile', user.update);
+router.post('/profile/:id', user.profile);
+router.patch('/profile/:id/update', user.update);
 router.post('/logout', user.logout)
 
 // Series section

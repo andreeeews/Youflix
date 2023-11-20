@@ -4,6 +4,7 @@ import Home from "./pages/home/home";
 import LoginPage from "./pages/login/login";
 import SignupPage from "./pages/register/register";
 import List from "./pages/series/list";
+import Details from "./pages/profile/details";
 
 function App() {
   return (
@@ -39,6 +40,14 @@ function App() {
             element={
               <Authenticated>
                 <List />
+              </Authenticated>
+            }
+          />
+          <Route
+            path="/details"
+            element={
+              <Authenticated>
+                <Details />
               </Authenticated>
             }
           />
