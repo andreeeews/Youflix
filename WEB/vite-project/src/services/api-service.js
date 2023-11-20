@@ -2,7 +2,7 @@ import axios from "axios";
 
 const service = axios.create({
   withCredentials: true,
-  baseURL: import.meta.env.REAC_APP_BASE_API_URL || "http://127.0.0.1:3000/v1"
+  baseURL: import.meta.env.REAC_APP_BASE_API_URL || "http://127.0.0.1:3000/v1",
 });
 
 service.interceptors.response.use(
@@ -15,7 +15,7 @@ service.interceptors.response.use(
       window.location.pathname !== "/login"
     ) {
       localStorage.removeItem("user");
-      window.location.assign("/login")
+      window.location.assign("/login");
     } else {
       return Promise.reject(error);
     }
@@ -35,10 +35,9 @@ export function logoutApi() {
 }
 
 export function getPlaylists() {
-  return service.get("/playlists")
+  return service.get("/playlists");
 }
 
 export function getPlaylistItems(id) {
-  console.log(id)
-  return service.get(`/playlists/${id}`)
+  return service.get(`/playlists/${id}`);
 }
