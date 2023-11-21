@@ -21,13 +21,10 @@ function Navbar() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center">
           <img
-            src="https://e7.pngegg.com/pngimages/26/116/png-clipart-netflix-logo-netflix-television-show-streaming-media-film-netflix-logo-television-text-thumbnail.png"
-            className="h-8 mr-3"
+            src="/youflix.png"
+            className="h-14 mr-3"
             alt="Flowbite Logo"
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">
-            Youflix
-          </span>
         </Link>
         <div className="flex md:order-2 items-center relative">
           {user ? (

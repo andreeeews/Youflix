@@ -8,14 +8,13 @@ const Playlist = require("../models/playlist.model");
 async function execute() {
   try {
     const { data: { items: playlists } } = await axios.get(
-      `https://www.googleapis.com/youtube/v3/playlists?key=${process.env.YT_API_KEY}&id=PLOW4rFKkqOT_jmN7GbZ4K1mScProJYQS1&part=snippet`
+      `https://www.googleapis.com/youtube/v3/playlists?key=${process.env.YT_API_KEY}&id=PLSbDMtNBmYTvTmLgj1Ge9lOg_vCgD13MU&part=snippet`
     );
 
     const youtubePlaylist = playlists[0];
     youtubePlaylist.youtubeId = youtubePlaylist.id;
     delete youtubePlaylist.id;
 
-    // Verificar si ya existe una playlist con el mismo youtubeId
     const existingPlaylist = await Playlist.findOne({ youtubeId: youtubePlaylist.youtubeId });
 
     if (!existingPlaylist) {

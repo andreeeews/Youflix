@@ -2,6 +2,7 @@
 import { useState } from "react";
 import "./popup.css";
 import { Link } from "react-router-dom";
+import NewCommentBox from "../comments/NewCommentBox";
 
 function Popup({ closePopup, playlistItems, selectedPlaylist }) {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -95,6 +96,7 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
           ))}
         </ul>
       </div>
+      <div><NewCommentBox playlistId={selectedPlaylist._id}/></div>
       <button className="close-button" onClick={closePopup}>
         Cerrar detalles
       </button>

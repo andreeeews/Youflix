@@ -13,8 +13,8 @@ const listComments = async (req, res) => {
 
 const createComment = async (req, res) => {
   try {
-    const { text, author, playlist } = req.body;
-    const newComment = new Comment({ text, author, playlist });
+    const { text, user, playlist } = req.body;
+    const newComment = new Comment({ text, user, playlist });
     const savedComment = await newComment.save();
     res.json(savedComment);
   } catch (error) {

@@ -46,4 +46,12 @@ export function getPlaylistItems(id) {
   return service.get(`/playlists/${id}`);
 }
 
-
+export function postComment(text, userId, playlistId) {
+  const data = {
+    text: text,
+    user: userId,
+    playlist: playlistId
+  }
+  console.log(data)
+  return service.post(`/comments/${playlistId}`, data)
+}

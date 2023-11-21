@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const schema = new mongoose.Schema(
   {
     text: { type: String },
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     playlist: { type: mongoose.Schema.Types.ObjectId, ref: "Playlist" },
   },
   {
