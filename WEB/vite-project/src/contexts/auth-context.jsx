@@ -20,6 +20,7 @@ export function AuthProvider({ children }) {
     user,
     onLogin,
     onLogout,
+    setUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

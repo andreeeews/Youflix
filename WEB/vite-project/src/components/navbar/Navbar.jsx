@@ -35,18 +35,17 @@ function Navbar() {
               {user.name && (
                 <span className="text-white mr-2">{user.name}</span>
               )}
-              {user.avatar ? (
-                // Mostrar avatar personalizado si está disponible
+
+              {user.avatar !== undefined ? (
                 <img
                   id="avatarButton"
                   type="button"
                   onClick={toggleDropdown}
                   className="w-10 h-10 me-5 rounded-full cursor-pointer"
-                  src={user.avatar}
+                  src={`/avatar${user.avatar}.png`}
                   alt="User dropdown"
                 />
               ) : (
-                // Mostrar avatar predeterminado si no hay avatar personalizado
                 <img
                   id="avatarButton"
                   type="button"
@@ -63,7 +62,9 @@ function Navbar() {
                 className="mt-5 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow absolute top-full left-0 w-44 dark:bg-gray-700 dark:divide-gray-600"
               >
                 <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                  <div>{user.name} {user.surname}</div>
+                  <div>
+                    {user.name} {user.surname}
+                  </div>
                   <div className="font-medium truncate">{user.email}</div>
                 </div>
                 <ul
@@ -71,7 +72,8 @@ function Navbar() {
                   aria-labelledby="avatarButton"
                 >
                   <li>
-                    <Link to="/details"
+                    <Link
+                      to="/details"
                       href="#"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
