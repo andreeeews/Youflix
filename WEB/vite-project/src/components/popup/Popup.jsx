@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import "./popup.css";
+import { Link } from "react-router-dom";
 
 function Popup({ closePopup, playlistItems, selectedPlaylist }) {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -11,30 +12,45 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
     );
   };
 
-
   document.body.classList.toggle("popup-open", selectedVideo !== null);
 
-  //const backgroundStyle = {
-  //  backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url(${selectedPlaylist.snippet.thumbnails.maxres.url})`,
-  //  backgroundSize: "cover",
-  //  backgroundRepeat: "no-repeat",
-  //  backgroundPosition: "center",
- // };
+  const description = selectedPlaylist.snippet.description || "Información no disponible";
+  const channelLink = `https://www.youtube.com/channel/${selectedPlaylist.snippet.channelId}`;
+
+  // Formatear la fecha
+  const rawPublishedAt = selectedPlaylist.snippet.publishedAt;
+  const publishedAt = rawPublishedAt
+    ? new Date(rawPublishedAt).toLocaleDateString("es-ES", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "2-digit",
+      })
+    : "Información no disponible";
 
   return (
     <div className="popup">
-      <div className="popup-content">
-        <h1 className="mb-5 text-lg font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-        {selectedPlaylist.snippet.localized.title}
-        </h1>
-        <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-          TO DO SERIE INFO
-        </p>
-        <a
-          href="#"
+      <div className="popup-content border">
+        <div className="flex mb-6">
+          <p className="text-xl font-bold text-red-700">
+            Titulo: <span className="text-gray-800">{selectedPlaylist.snippet.localized.title}</span>
+          </p>
+          <p className="ml-4 text-xl font-bold text-red-700">
+            Autor: <span className="text-gray-800">{selectedPlaylist.snippet.channelTitle}</span>
+          </p>
+        </div>
+        <div className="mb-6">
+          <p className="text-lg font-bold text-gray-700">
+            Descripción: <span className="text-gray-800">{description}</span>
+          </p>
+          <p className="text-lg font-bold text-gray-700">
+            Fecha de publicación: <span className="text-gray-800">{publishedAt}</span>
+          </p>
+        </div>
+        <Link
+          to={channelLink}
           className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
         >
-          Learn more
+          Ir al canal
           <svg
             className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
             aria-hidden="true"
@@ -50,37 +66,37 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
               d="M1 5h12m0 0L9 1m4 4L9 9"
             />
           </svg>
-        </a>
-        <h5>{selectedPlaylist.snippet.localized.title}</h5>
-        <ul>
+        </Link>
+        <ul className="mt-5">
           {playlistItems.map((item) => (
-            <li
-              key={item._id}
-              className={`title-item rounded border p-4 mb-4 ${
-                item.contentDetails.videoId === selectedVideo ? "active" : ""
-              }`}
-              onClick={() => handleTitleClick(item.contentDetails.videoId)}
-            >
-              {item.snippet.title}
+            <li key={item._id} className="mb-4">
+              <div
+                className={`title-item rounded border p-4 ${
+                  item.contentDetails.videoId === selectedVideo ? "active" : ""
+                }`}
+                onClick={() => handleTitleClick(item.contentDetails.videoId)}
+              >
+                {item.snippet.title}
+              </div>
+              {selectedVideo === item.contentDetails.videoId && (
+                <div className="video-container mt-4">
+                  <iframe
+                    className="video-player"
+                    width="560"
+                    height="315"
+                    src={`https://www.youtube.com/embed/${selectedVideo}`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
             </li>
           ))}
         </ul>
-        {selectedVideo && (
-          <div className="video-container mt-4">
-            <iframe
-              className="video-player"
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${selectedVideo}`}
-              title="YouTube video player"
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
-          </div>
-        )}
       </div>
       <button className="close-button" onClick={closePopup}>
-        Close Popup
+        Cerrar detalles
       </button>
     </div>
   );
