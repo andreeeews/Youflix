@@ -1,6 +1,6 @@
 .image-container {
-  width: 100px; /* Ajusta el tamaño según tus preferencias */
-  height: 100px; /* Ajusta el tamaño según tus preferencias */
+  width: 100px; 
+  height: 100px; 
   position: relative;
 }
 
@@ -13,4 +13,31 @@
 
 .image-selected {
   border-color: red;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+
+.title-border {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+button {
+  margin-top: 20px; 
 }

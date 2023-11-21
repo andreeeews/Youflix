@@ -19,7 +19,7 @@ function Navbar() {
   return (
     <nav className="bg-transparent dark:bg-gray-900 w-full z-20 top-0 left-0">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img
             src="https://e7.pngegg.com/pngimages/26/116/png-clipart-netflix-logo-netflix-television-show-streaming-media-film-netflix-logo-television-text-thumbnail.png"
             className="h-8 mr-3"
@@ -28,7 +28,7 @@ function Navbar() {
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">
             Youflix
           </span>
-        </a>
+        </Link>
         <div className="flex md:order-2 items-center relative">
           {user ? (
             <div className="flex flex-row items-center relative">

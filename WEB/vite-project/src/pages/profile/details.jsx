@@ -2,6 +2,7 @@ import "./details.css";
 import { useState } from "react";
 import { useAuthContext } from "../../contexts/auth-context";
 import { editUser, logoutApi } from "../../services/api-service";
+import { Link } from "react-router-dom";
 
 function Details() {
   const { user, onLogout } = useAuthContext();
@@ -29,10 +30,14 @@ function Details() {
   };
 
   const handleImageChange = (selectedImage) => {
-    setFormData({
-      ...formData,
-      avatar: selectedImage,
-    });
+    try {
+      setFormData({
+        ...formData,
+        avatar: selectedImage,
+      });
+    } catch (error) {
+      console.error("Error updating formData:", error);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -41,6 +46,8 @@ function Details() {
     editUser(formData, user.id)
       .then((response) => {
         console.log("Usuario actualizado:", response);
+        alert("Datos cambiados con exito, vuelve a iniciar sesión para aplicar cambios.")
+        logout();
       })
       .catch((error) => {
         console.error("Error al actualizar usuario:", error);
@@ -48,8 +55,10 @@ function Details() {
   };
 
   return (
-    <div>
-      <h1 className="text-white text-7xl text- ">Modificar perfil</h1>
+    <div className="">
+      <h1 className="text-white text-7xl font-bold title-border">
+        Modificar perfil
+      </h1>
       <form
         onSubmit={handleSubmit}
         className="space-y-4 md:space-y-6"
@@ -117,8 +126,8 @@ function Details() {
             {[0, 1, 2].map((index) => (
               <div
                 key={index}
-                className={`cursor-pointer rounded-lg border border-gray-300 image-container ${
-                  formData.image === index ? "image-selected" : ""
+                className={`cursor-pointer rounded-lg image-container border ${
+                  formData.avatar === index ? "border-red-600" : "border-gray-300"
                 }`}
                 onClick={() => handleImageChange(index)}
               >
@@ -136,7 +145,7 @@ function Details() {
             htmlFor="password"
             className="block mb-2 text-sm font-medium text-white dark:text-white"
           >
-            Password
+            Contraseña
           </label>
           <input
             placeholder="Nueva contraseña"
@@ -148,14 +157,21 @@ function Details() {
             required=""
           />
         </div>
-        <div className="flex items-start"></div>
-        <button
-          type="submit"
-          onClick={logout}
-          className="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-        >
-          Modificar datos
-        </button>
+        <div className="flex items-start space-x-4">
+          <button
+            type="submit"
+            onClick={logout}
+            className="w-full text-white bg-red-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
+            Modificar datos
+          </button>
+          <Link
+            to="/"
+            className="w-full text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-900 dark:focus:ring-gray-600"
+          >
+            Cancelar
+          </Link>
+        </div>
       </form>
     </div>
   );
