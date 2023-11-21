@@ -11,15 +11,15 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
     );
   };
 
-  // Agrega una clase al body para deshabilitar la interacción con el fondo
+
   document.body.classList.toggle("popup-open", selectedVideo !== null);
 
-  const backgroundStyle = {
-    backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url(${selectedPlaylist.snippet.thumbnails.maxres.url})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-  };
+  //const backgroundStyle = {
+  //  backgroundImage: `linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url(${selectedPlaylist.snippet.thumbnails.maxres.url})`,
+  //  backgroundSize: "cover",
+  //  backgroundRepeat: "no-repeat",
+  //  backgroundPosition: "center",
+ // };
 
   return (
     <div className="popup">

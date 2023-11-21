@@ -8,7 +8,7 @@ const Playlist = require("../models/playlist.model");
 async function execute() {
   try {
     const { data: { items: playlists } } = await axios.get(
-      `https://www.googleapis.com/youtube/v3/playlists?key=${process.env.YT_API_KEY}&id=PLIjkAOS-DpiSzI7B6gK6cZ7U9wNbGEMKQ&part=snippet`
+      `https://www.googleapis.com/youtube/v3/playlists?key=${process.env.YT_API_KEY}&id=PLOW4rFKkqOT_jmN7GbZ4K1mScProJYQS1&part=snippet`
     );
 
     const youtubePlaylist = playlists[0];

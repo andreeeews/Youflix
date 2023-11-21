@@ -16,3 +16,19 @@ module.exports.listItems = (req, res, next) => {
     })
     .catch((error) => next(error))
 }
+
+module.exports.seenStatus = (req, res, next) => {
+  const { videoId, seen } = req.body;
+
+  PlaylistItems.updateOne(
+    { 'contentDetails.videoId': videoId },
+    { seen }
+  )
+    .then(() => {
+      res.status(200).json({ success: true });
+    })
+    .catch((error) => {
+      console.error('Error updating seen status:', error);
+      res.status(500).json({ success: false, error: 'Internal Server Error' });
+    });
+};

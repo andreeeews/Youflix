@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import "./list.css";
-import { getPlaylists, getPlaylistItems } from "../../services/api-service"; // Asumo que tienes una función para obtener los elementos de la lista
+import { getPlaylists, getPlaylistItems } from "../../services/api-service";
 import Popup from "../../components/popup/Popup";
+import searchIcon from "../../assets/search.svg"
 
 function List() {
   const [data, setData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [playlistItems, setPlaylistItems] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     getPlaylists().then((data) => {
@@ -18,11 +20,19 @@ function List() {
 
   const openPopup = (playlist) => {
     setShowPopup(true);
-    setSelectedPlaylist(playlist); // Guarda los datos de la playlist seleccionada
+    setSelectedPlaylist(playlist);
     getPlaylistItems(playlist._id).then((items) => {
       setPlaylistItems(items);
     });
   };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredPlaylist = data.filter((playlist) =>
+    playlist.snippet.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const closePopup = () => {
     setShowPopup(false);
@@ -32,11 +42,20 @@ function List() {
 
   return (
     <>
-      <div>
+      <div className="navbar-container">
         <Navbar />
+        <div className="search-input">
+        <img src={searchIcon}></img>
+          <input
+            type="text"
+            placeholder="Buscar serie"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </div>
       </div>
       <div className="max-w-sm bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        {data.map((playlist) => (
+        {filteredPlaylist.map((playlist) => (
           <div
             key={playlist._id}
             className="playlist-card"
@@ -59,7 +78,7 @@ function List() {
         <Popup
           closePopup={closePopup}
           playlistItems={playlistItems}
-          selectedPlaylist={selectedPlaylist} // Pasa los datos de la playlist al Popup
+          selectedPlaylist={selectedPlaylist}
         />
       )}
     </>

@@ -28,6 +28,10 @@ const playlistItems = new Schema(
     videoId: String,
     videoPublishedAt: Date,
   },
+  seen: {
+    type: Boolean,
+    default: false,
+  },
   playlistId: { type: mongoose.Schema.Types.ObjectId, ref: 'Playlist' },
 },
   {

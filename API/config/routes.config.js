@@ -18,6 +18,7 @@ router.post('/logout', user.logout)
 // Series section
 router.get("/playlists", series.list);
 router.get("/playlists/:id", series.listItems)
+router.post("/updateSeen", series.seenStatus)
 
 
 module.exports = router;
