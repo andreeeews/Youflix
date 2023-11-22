@@ -48,7 +48,7 @@ function Navbar() {
                   type="button"
                   onClick={toggleDropdown}
                   className="w-10 h-10 me-5 rounded-full cursor-pointer"
-                  src="/no-avatar.jpg"
+                  src="/avatar0.png"
                   alt="User dropdown"
                 />
               )}
