@@ -20,6 +20,7 @@ router.post("/logout", user.logout);
 router.get("/playlists", series.list);
 router.get("/playlists/:id", series.listItems);
 router.post("/updateSeen", series.seenStatus);
+router.post("/seeLater/:playlistId", series.markSeriesForLater)
 
 router.get("/comments/:playlistId", commentController.listComments);
 router.post("/comments/:playlistId", commentController.createComment);

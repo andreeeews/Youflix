@@ -26,6 +26,7 @@ const createComment = async (req, res) => {
 const deleteComment = async (req, res) => {
   try {
     const { commentId } = req.params;
+    console.log(commentId)
     await Comment.findByIdAndDelete(commentId);
     res.json({ message: 'Comentario eliminado con éxito' });
   } catch (error) {

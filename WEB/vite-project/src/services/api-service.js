@@ -59,3 +59,16 @@ export function postComment(text, userId, playlistId) {
 export function getComments(playlistId) {
   return service.get(`/comments/${playlistId}`)
 }
+
+export function deleteComment(commentId) {
+  console.log(commentId)
+  return service.delete(`/comments/${commentId}`)
+}
+
+export function markSeelater(playlistId, userId) {
+  const data = {
+    userId: userId
+  }
+  console.log(data)
+  return service.post(`/seeLater/${playlistId}`, data)
+}

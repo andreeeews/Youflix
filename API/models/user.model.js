@@ -32,6 +32,9 @@ const userSchema = new Schema({
   avatar: {
     type: String,
   },
+  seelater: {
+    type: Array
+  }
 },
 {
   timestamps: true,

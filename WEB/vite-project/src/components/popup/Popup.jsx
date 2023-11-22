@@ -4,7 +4,7 @@ import "./popup.css";
 import { Link } from "react-router-dom";
 import NewCommentBox from "../comments/NewCommentBox";
 import CommentBox from "../comments/CommentBox";
-import { getComments } from "../../services/api-service";
+import { getComments, markSeelater } from "../../services/api-service";
 import { useAuthContext } from "../../contexts/auth-context";
 
 function Popup({ closePopup, playlistItems, selectedPlaylist }) {
@@ -31,7 +31,31 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
     );
   };
 
-  console.log(selectedPlaylist);
+  const updateComments = (updatedComments) => {
+    setComments(updatedComments);
+  };
+
+  const parsePublishedAt = (publishedAt) => {
+    return new Date(publishedAt);
+  };
+
+  playlistItems.sort((a, b) => {
+  const dateA = parsePublishedAt(a.snippet.publishedAt);
+  const dateB = parsePublishedAt(b.snippet.publishedAt);
+  return dateA - dateB;
+});
+
+const handleMarkSeriesForLater = async () => {
+    try {
+      // Call your backend API to mark the series for later viewing
+      const response = await markSeelater(selectedPlaylist._id, user.id);
+      // Handle the response as needed
+      console.log(response);
+    } catch (error) {
+      console.error("Error al marcar la serie para ver más tarde:", error);
+    }
+  };
+
 
   const channelLink = `https://www.youtube.com/channel/${selectedPlaylist.snippet.channelId}`;
 
@@ -87,6 +111,12 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
             />
           </svg>
         </Link>
+        <button
+        className="mark-for-later-button"
+        onClick={handleMarkSeriesForLater}
+      >
+        Marcar la serie para ver después
+      </button>
         <ul className="mt-5">
           {playlistItems.map((item) => (
             <li key={item._id} className="mb-4">
@@ -141,6 +171,9 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
                 text={comment.text}
                 avatar={user.avatar}
                 createdAt={comment.createdAt}
+                comment={comment}
+                comments={comments}
+                updateComments={updateComments}
               />
             </li>
           ))}
