@@ -1,11 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./popup.css";
 import { Link } from "react-router-dom";
 import NewCommentBox from "../comments/NewCommentBox";
+import CommentBox from "../comments/CommentBox";
+import { getComments } from "../../services/api-service";
+import { useAuthContext } from "../../contexts/auth-context";
 
 function Popup({ closePopup, playlistItems, selectedPlaylist }) {
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [comments, setComments] = useState([]);
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await getComments(selectedPlaylist._id);
+        setComments(response);
+      } catch (error) {
+        console.error("Error al obtener comentarios:", error);
+      }
+    };
+
+    fetchComments();
+  }, [selectedPlaylist._id]);
 
   const handleTitleClick = (videoId) => {
     setSelectedVideo((prevSelectedVideo) =>
@@ -13,12 +31,11 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
     );
   };
 
-  document.body.classList.toggle("popup-open", selectedVideo !== null);
+  const description =
+    selectedPlaylist.snippet.description || "Información no disponible";
 
-  const description = selectedPlaylist.snippet.description || "Información no disponible";
   const channelLink = `https://www.youtube.com/channel/${selectedPlaylist.snippet.channelId}`;
 
-  // Formatear la fecha
   const rawPublishedAt = selectedPlaylist.snippet.publishedAt;
   const publishedAt = rawPublishedAt
     ? new Date(rawPublishedAt).toLocaleDateString("es-ES", {
@@ -33,10 +50,16 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
       <div className="popup-content border">
         <div className="flex mb-6">
           <p className="text-xl font-bold text-red-700">
-            Titulo: <span className="text-gray-800">{selectedPlaylist.snippet.localized.title}</span>
+            Titulo:{" "}
+            <span className="text-gray-800">
+              {selectedPlaylist.snippet.localized.title}
+            </span>
           </p>
           <p className="ml-4 text-xl font-bold text-red-700">
-            Autor: <span className="text-gray-800">{selectedPlaylist.snippet.channelTitle}</span>
+            Autor:{" "}
+            <span className="text-gray-800">
+              {selectedPlaylist.snippet.channelTitle}
+            </span>
           </p>
         </div>
         <div className="mb-6">
@@ -44,7 +67,8 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
             Descripción: <span className="text-gray-800">{description}</span>
           </p>
           <p className="text-lg font-bold text-gray-700">
-            Fecha de publicación: <span className="text-gray-800">{publishedAt}</span>
+            Fecha de publicación:{" "}
+            <span className="text-gray-800">{publishedAt}</span>
           </p>
         </div>
         <Link
@@ -96,7 +120,23 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
           ))}
         </ul>
       </div>
-      <div><NewCommentBox playlistId={selectedPlaylist._id}/></div>
+      <div className="comments-container">
+        <ul className="comment-list">
+          {comments.map((comment) => (
+            <li key={comment._id} className="mb-2">
+              <CommentBox
+                name={user.name}
+                text={comment.text}
+                avatar={user.avatar}
+                createdAt={comment.createdAt}
+              />
+            </li>
+          ))}
+        </ul>
+        <div className="new-comment-container">
+          <NewCommentBox playlistId={selectedPlaylist._id} />
+        </div>
+      </div>
       <button className="close-button" onClick={closePopup}>
         Cerrar detalles
       </button>

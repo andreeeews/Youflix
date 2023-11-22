@@ -1,5 +1,5 @@
 .popup-open {
-  overflow-y: auto; /* Evita el desplazamiento del cuerpo cuando el popup está abierto */
+  overflow-y: auto; 
 }
 
 .popup {
@@ -18,11 +18,11 @@
 .popup-content {
   padding: 10px;
   width: 120vh;
-  max-height: 80vh; /* Ajusta el valor según tus preferencias */
-  overflow-y: auto; /* Agrega desplazamiento vertical si el contenido excede la altura máxima */
+  max-height: 80vh; 
+  overflow-y: auto; 
   background-color: white;
   border-radius: 10px;
-  position: relative; /* Asegúrate de que el posicionamiento sea relativo */
+  position: relative;
 }
 
 .video-container {
@@ -58,4 +58,40 @@
 .active {
   background-color: #ececec;
   border-color: #333;
+}
+
+.comments-container {
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px; 
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  max-height: 300px; 
+  overflow-y: auto;
+  margin-top: 10px; 
+}
+
+.new-comment-container {
+  margin-top: 20px; 
+}
+
+.comment-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.comment-list::-webkit-scrollbar-thumb {
+  background-color: #4b4b4b; 
+  border-radius: 4px;
+}
+
+.comment-list::-webkit-scrollbar-track {
+  background-color: #2d2d2d; 
+  border-radius: 4px;
+}
+
+.comment-list::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
 }

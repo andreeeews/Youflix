@@ -55,3 +55,7 @@ export function postComment(text, userId, playlistId) {
   console.log(data)
   return service.post(`/comments/${playlistId}`, data)
 }
+
+export function getComments(playlistId) {
+  return service.get(`/comments/${playlistId}`)
+}
