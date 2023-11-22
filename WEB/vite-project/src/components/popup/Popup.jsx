@@ -99,7 +99,7 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
                 <div className="flex items-start">
                   <div className="mr-4">
                     <img
-                      src={item.snippet.thumbnails.maxres.url}
+                      src={item.snippet.thumbnails?.maxres?.url}
                       alt="Video Thumbnail"
                       className="w-24 h-16 object-cover rounded"
                     />

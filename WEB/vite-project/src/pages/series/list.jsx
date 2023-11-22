@@ -64,56 +64,56 @@ function List() {
         </div>
       </div>
       <div className="">
-        {/* Sección "Series recién añadidas" */}
-        <div className="playlist-section flex flex-col mt-11">
-          <h2 className="text-white">Series recién añadidas</h2>
-          <div className="flex gap-3 p-1 mt-5">
-            {recentlyAdded.map((playlist) => (
-              <div
-                key={playlist._id}
-                className="playlist-card w-full"
-                onClick={() => openPopup(playlist)}
-              >
-                <a href="#">
-                  <img
-                    className="rounded-t-lg w-full h-auto"
-                    src={playlist.snippet.thumbnails.maxres.url}
-                    alt={playlist.snippet.title}
-                  />
-                </a>
-                <div className="playlist-info">
-                  <h3>{playlist.snippet.title}</h3>
-                </div>
-              </div>
-            ))}
+  {/* Sección "Series recién añadidas" */}
+  <div className="playlist-section flex flex-col mt-11 mx-auto">
+    <h2 className="text-white text-center">Series recién añadidas</h2>
+    <div className="flex flex-wrap gap-3 m-5 justify-center">
+      {recentlyAdded.map((playlist) => (
+        <div
+          key={playlist._id}
+          className="playlist-card w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
+          onClick={() => openPopup(playlist)}
+        >
+          <a href="#">
+            <img
+              className="rounded-t-lg w-full h-auto"
+              src={playlist.snippet.thumbnails.maxres.url}
+              alt={playlist.snippet.title}
+            />
+          </a>
+          <div className="playlist-info">
+            <h3>{playlist.snippet.title}</h3>
           </div>
         </div>
+      ))}
+    </div>
+  </div>
 
-        {/* Sección "Series disponibles" */}
-        <div className="playlist-section flex flex-col mt-11">
-          <h2 className="text-white">Series disponibles</h2>
-          <div className="flex p-1 gap-3 mt-5">
-            {filteredPlaylist.map((playlist) => (
-              <div
-                key={playlist._id}
-                className="playlist-card w-full"
-                onClick={() => openPopup(playlist)}
-              >
-                <a href="#">
-                  <img
-                    className="rounded-t-lg w-full h-auto"
-                    src={playlist.snippet.thumbnails.maxres.url}
-                    alt={playlist.snippet.title}
-                  />
-                </a>
-                <div className="playlist-info">
-                  <h3>{playlist.snippet.title}</h3>
-                </div>
-              </div>
-            ))}
+  {/* Sección "Series disponibles" */}
+  <div className="playlist-section flex flex-col mt-11 mx-auto">
+    <h2 className="text-white text-center">Series disponibles</h2>
+    <div className="flex flex-wrap gap-3 m-5 justify-center">
+      {filteredPlaylist.map((playlist) => (
+        <div
+          key={playlist._id}
+          className="playlist-card w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
+          onClick={() => openPopup(playlist)}
+        >
+          <a href="#">
+            <img
+              className="rounded-t-lg w-full h-auto"
+              src={playlist.snippet.thumbnails.maxres.url}
+              alt={playlist.snippet.title}
+            />
+          </a>
+          <div className="playlist-info">
+            <h3>{playlist.snippet.title}</h3>
           </div>
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
 
       {showPopup && (
         <Popup
