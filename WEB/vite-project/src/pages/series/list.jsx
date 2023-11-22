@@ -4,6 +4,7 @@ import "./list.css";
 import { getPlaylists, getPlaylistItems } from "../../services/api-service";
 import Popup from "../../components/popup/Popup";
 import searchIcon from "../../assets/search.svg";
+import Footer from "../../components/footer/Footer";
 
 function List() {
   const [data, setData] = useState([]);
@@ -122,6 +123,9 @@ function List() {
           selectedPlaylist={selectedPlaylist}
         />
       )}
+    <div className="mt-11">
+      <Footer/>
+    </div>
     </>
   );
 }

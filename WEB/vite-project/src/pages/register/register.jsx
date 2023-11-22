@@ -12,6 +12,7 @@ function SignupPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(null);
   const { onLogin } = useAuthContext();
 
