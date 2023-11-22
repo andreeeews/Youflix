@@ -56,7 +56,7 @@ function Details() {
 
   return (
     <div className="">
-      <h1 className="text-white text-7xl font-bold title-border">
+      <h1 className="text-white text-7xl font-bold title-border netflix-font mt-5 pb-5">
         Modificar perfil
       </h1>
       <form

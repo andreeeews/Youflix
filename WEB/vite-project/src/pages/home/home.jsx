@@ -1,15 +1,19 @@
 import Header from '../../components/header/Header'
 import Card from '../../components/body-card/Card'
 import "../../components/header/header.css"
+import Footer from '../../components/footer/Footer';
 
 function Home() {
   return (
     <>
     <div>
-    <Header/>
+      <Header/>
     </div>
     <div>
-    <Card/>
+      <Card/>
+    </div>
+    <div>
+      <Footer/>
     </div>
     </>
   )

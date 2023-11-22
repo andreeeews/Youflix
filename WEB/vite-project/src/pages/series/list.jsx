@@ -66,7 +66,7 @@ function List() {
       <div className="">
   {/* Sección "Series recién añadidas" */}
   <div className="playlist-section flex flex-col mt-11 mx-auto">
-    <h2 className="text-white text-center">Series recién añadidas</h2>
+    <h1 className="text-white text-center netflix-font text-7xl">Series recién añadidas</h1>
     <div className="flex flex-wrap gap-3 m-5 justify-center">
       {recentlyAdded.map((playlist) => (
         <div
@@ -91,7 +91,7 @@ function List() {
 
   {/* Sección "Series disponibles" */}
   <div className="playlist-section flex flex-col mt-11 mx-auto">
-    <h2 className="text-white text-center">Series disponibles</h2>
+    <h1 className="text-white text-center netflix-font text-7xl">Series disponibles</h1>
     <div className="flex flex-wrap gap-3 m-5 justify-center">
       {filteredPlaylist.map((playlist) => (
         <div

@@ -8,7 +8,7 @@ function Header() {
       <div className="custom-background-content">
         <Navbar />
         <div className="flex flex-col items-center justify-center custom-height">
-          <h2 className="text-4xl font-extrabold text-white dark:text-white text-center">
+          <h2 className="netflix-font text-7xl font-extrabold text-white dark:text-white text-center">
             Las series de YouTube más exitosas reunidas aquí. Completamente
             gratis.
           </h2>

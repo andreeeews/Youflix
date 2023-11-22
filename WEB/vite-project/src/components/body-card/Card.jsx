@@ -1,14 +1,22 @@
+import "./card.css"
+import landing1 from "../../assets/landing1.mp4"
+import landing2 from "../../assets/landing2.mp4"
+
 function Card() {
   return (
     <>
       <div>
         <div className="py-8 w-full items-center justify-center bg-black border-b-4 border-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 flex">
           <div>
-            <img
+          <video
               className="object-cover w-full h-96"
-              src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png"
-              alt=""
-            />
+              autoPlay
+              loop
+              muted
+            >
+              <source src={landing1} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
           <div className="flex flex-col p-4 items-center justify-center leading-normal">
             <h5 className="text-2xl font-bold mb-2 text-white dark:text-white">
@@ -33,11 +41,15 @@ function Card() {
             </p>
           </div>
           <div>
-            <img
+          <video
               className="object-cover w-full h-96"
-              src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile.png"
-              alt=""
-            />
+              autoPlay
+              loop
+              muted
+            >
+              <source src={landing2} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
         <div className="py-8 w-full items-center justify-center bg-black border-b-4 border-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 flex">
