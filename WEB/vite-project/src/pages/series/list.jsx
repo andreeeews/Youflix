@@ -3,10 +3,11 @@ import Navbar from "../../components/navbar/Navbar";
 import "./list.css";
 import { getPlaylists, getPlaylistItems } from "../../services/api-service";
 import Popup from "../../components/popup/Popup";
-import searchIcon from "../../assets/search.svg"
+import searchIcon from "../../assets/search.svg";
 
 function List() {
   const [data, setData] = useState([]);
+  const [recentlyAdded, setRecentlyAdded] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [playlistItems, setPlaylistItems] = useState([]);
   const [selectedPlaylist, setSelectedPlaylist] = useState(null);
@@ -15,6 +16,14 @@ function List() {
   useEffect(() => {
     getPlaylists().then((data) => {
       setData(data);
+
+      // Obtener playlists recién añadidas (menos de 2 días de antigüedad)
+      const twoDaysAgo = new Date();
+      twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+      const recentlyAddedPlaylists = data.filter(
+        (playlist) => new Date(playlist.createdAt) > twoDaysAgo
+      );
+      setRecentlyAdded(recentlyAddedPlaylists);
     });
   }, []);
 
@@ -45,7 +54,7 @@ function List() {
       <div className="navbar-container">
         <Navbar />
         <div className="search-input">
-        <img src={searchIcon}></img>
+          <img src={searchIcon} alt="Search Icon" />
           <input
             type="text"
             placeholder="Buscar serie"
@@ -54,26 +63,58 @@ function List() {
           />
         </div>
       </div>
-      <div className="max-w-sm bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        {filteredPlaylist.map((playlist) => (
-          <div
-            key={playlist._id}
-            className="playlist-card"
-            onClick={() => openPopup(playlist)}
-          >
-            <a href="#">
-              <img
-                className="rounded-t-lg"
-                src={playlist.snippet.thumbnails.maxres.url}
-                alt={playlist.snippet.title}
-              />
-            </a>
-            <div className="playlist-info">
-              <h3>{playlist.snippet.title}</h3>
-            </div>
+      <div className="">
+        {/* Sección "Series recién añadidas" */}
+        <div className="playlist-section flex flex-col mt-11">
+          <h2 className="text-white">Series recién añadidas</h2>
+          <div className="flex gap-3 p-1 mt-5">
+            {recentlyAdded.map((playlist) => (
+              <div
+                key={playlist._id}
+                className="playlist-card w-full"
+                onClick={() => openPopup(playlist)}
+              >
+                <a href="#">
+                  <img
+                    className="rounded-t-lg w-full h-auto"
+                    src={playlist.snippet.thumbnails.maxres.url}
+                    alt={playlist.snippet.title}
+                  />
+                </a>
+                <div className="playlist-info">
+                  <h3>{playlist.snippet.title}</h3>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* Sección "Series disponibles" */}
+        <div className="playlist-section flex flex-col mt-11">
+          <h2 className="text-white">Series disponibles</h2>
+          <div className="flex p-1 gap-3 mt-5">
+            {filteredPlaylist.map((playlist) => (
+              <div
+                key={playlist._id}
+                className="playlist-card w-full"
+                onClick={() => openPopup(playlist)}
+              >
+                <a href="#">
+                  <img
+                    className="rounded-t-lg w-full h-auto"
+                    src={playlist.snippet.thumbnails.maxres.url}
+                    alt={playlist.snippet.title}
+                  />
+                </a>
+                <div className="playlist-info">
+                  <h3>{playlist.snippet.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
+
       {showPopup && (
         <Popup
           closePopup={closePopup}

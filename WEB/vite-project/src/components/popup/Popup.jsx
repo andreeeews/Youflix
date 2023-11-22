@@ -31,8 +31,7 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
     );
   };
 
-  const description =
-    selectedPlaylist.snippet.description || "Información no disponible";
+  console.log(selectedPlaylist);
 
   const channelLink = `https://www.youtube.com/channel/${selectedPlaylist.snippet.channelId}`;
 
@@ -48,32 +47,28 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
   return (
     <div className="popup">
       <div className="popup-content border">
-        <div className="flex mb-6">
-          <p className="text-xl font-bold text-red-700">
-            Titulo:{" "}
-            <span className="text-gray-800">
-              {selectedPlaylist.snippet.localized.title}
-            </span>
-          </p>
-          <p className="ml-4 text-xl font-bold text-red-700">
-            Autor:{" "}
-            <span className="text-gray-800">
-              {selectedPlaylist.snippet.channelTitle}
-            </span>
-          </p>
-        </div>
         <div className="mb-6">
-          <p className="text-lg font-bold text-gray-700">
-            Descripción: <span className="text-gray-800">{description}</span>
+          <p className="text-3xl font-bold text-gray-800 mb-2">
+            {selectedPlaylist.snippet.localized.title}
           </p>
-          <p className="text-lg font-bold text-gray-700">
-            Fecha de publicación:{" "}
-            <span className="text-gray-800">{publishedAt}</span>
+          <p className="text-lg text-gray-500 mb-2">
+            {selectedPlaylist.snippet.description ||
+              "Información no disponible"}
           </p>
+          <div className="flex items-center text-gray-500 mb-2">
+            <p className="text-lg font-bold mr-4">
+              {" "}
+              <span className="text-gray-800">{publishedAt}</span>
+            </p>
+            <p className="text-lg font-bold">
+              {playlistItems.length}{" "}
+              {playlistItems.length === 1 ? "episodio" : "episodios"}
+            </p>
+          </div>
         </div>
         <Link
           to={channelLink}
-          className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
+          className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 mb-4"
         >
           Ir al canal
           <svg
@@ -101,21 +96,38 @@ function Popup({ closePopup, playlistItems, selectedPlaylist }) {
                 }`}
                 onClick={() => handleTitleClick(item.contentDetails.videoId)}
               >
-                {item.snippet.title}
-              </div>
-              {selectedVideo === item.contentDetails.videoId && (
-                <div className="video-container mt-4">
-                  <iframe
-                    className="video-player"
-                    width="560"
-                    height="315"
-                    src={`https://www.youtube.com/embed/${selectedVideo}`}
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allowFullScreen
-                  ></iframe>
+                <div className="flex items-start">
+                  <div className="mr-4">
+                    <img
+                      src={item.snippet.thumbnails.maxres.url}
+                      alt="Video Thumbnail"
+                      className="w-24 h-16 object-cover rounded"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-lg font-bold text-gray-800">
+                      {item.snippet.title}
+                    </div>
+                    <p className="text-sm text-gray-500">
+                      {item.snippet.description ||
+                        "No hay descripción disponible"}
+                    </p>
+                  </div>
                 </div>
-              )}
+                {selectedVideo === item.contentDetails.videoId && (
+                  <div className="video-container mt-4">
+                    <iframe
+                      className="video-player"
+                      width="560"
+                      height="315"
+                      src={`https://www.youtube.com/embed/${selectedVideo}`}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                )}
+              </div>
             </li>
           ))}
         </ul>

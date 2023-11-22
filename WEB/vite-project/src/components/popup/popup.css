@@ -83,7 +83,7 @@
 }
 
 .comment-list::-webkit-scrollbar-thumb {
-  background-color: #4b4b4b; 
+  background-color: red; 
   border-radius: 4px;
 }
 
@@ -93,5 +93,5 @@
 }
 
 .comment-list::-webkit-scrollbar-thumb:hover {
-  background-color: #666;
+  background-color: #810505;
 }

@@ -21,6 +21,9 @@ const playlist = new Schema({
       description: String,
     },
   },
+},
+{
+  timestamps: true
 });
 
 const Playlist = mongoose.model('Playlist', playlist);
