@@ -123,7 +123,7 @@ function List() {
           selectedPlaylist={selectedPlaylist}
         />
       )}
-    <div className="mt-11">
+    <div>
       <Footer/>
     </div>
     </>

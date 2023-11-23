@@ -72,3 +72,7 @@ export function markSeelater(playlistId, userId) {
   console.log(data)
   return service.post(`/seeLater/${playlistId}`, data)
 }
+
+export function getMyList(userId) {
+  return service.get(`/mylist/${userId}`);
+}

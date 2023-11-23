@@ -5,10 +5,12 @@ require("../config/db.config");
 const PlaylistItems = require("../models/playlistItems.model");
 const Playlist = require("../models/playlist.model");
 
+const playlistId = "PLLthKEQ4znxxlAeMukTGJ8LomXb4ap-a0"
+
 async function execute() {
   try {
     const { data: { items: playlists } } = await axios.get(
-      `https://www.googleapis.com/youtube/v3/playlists?key=${process.env.YT_API_KEY}&id=PLLthKEQ4znxxlAeMukTGJ8LomXb4ap-a0&part=snippet`
+      `https://www.googleapis.com/youtube/v3/playlists?key=${process.env.YT_API_KEY}&id=${playlistId}&part=snippet`
     );
 
     const youtubePlaylist = playlists[0];
